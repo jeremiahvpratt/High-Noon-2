@@ -7,17 +7,27 @@ const ResponseList = (props) => {
     return a['updatedAt'] > b['updatedAt'] ? -1 : 1;
   });
   //const responseNodes = props.data.map(r => (
-  const responseNodes = sorted.map(r => (
-    <Response
-      key={r._id} id={r._id}
-      response={r.selection}
-      place={r.location}
-      time={r.time}
-      timestamp={r.updatedAt}/>
-  ));
+  // const responseNodes = sorted.map(r => (
+  //   <Response
+  //     key={r._id} id={r._id}
+  //     response={r.selection}
+  //     place={r.location}
+  //     time={r.time}
+  //     timestamp={r.updatedAt}/>
+  // ));
   return (
     <div>
-      {responseNodes}
+      <table>
+        {sorted.map((s) =>{
+          return(
+            <tr>
+              <td>r.selection</td>
+              <td>r.time</td>
+              <td>r.location</td>
+            </tr>
+          );
+        })}
+//      {responseNodes}
     </div>
   );
 };
