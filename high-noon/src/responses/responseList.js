@@ -11,6 +11,7 @@ const ResponseList = (props) => {
     <Response
       key={r._id} id={r._id}
       response={r.selection}
+      place={r.location}
       time={r.time}
       timestamp={r.updatedAt}/>
   ));
@@ -25,6 +26,7 @@ ResponseList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     response: PropTypes.string,
+    place: PropTypes.string,
     time: PropTypes.string,
   })),
 };
@@ -34,4 +36,3 @@ ResponseList.defaultProps = {
 };
 
 export default ResponseList;
-

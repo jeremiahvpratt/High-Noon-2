@@ -49,6 +49,7 @@ router.get('/responses', (req, res, next) => {
 router.post('/responses', (req, res, next) => {
   const response = new Selection();
   response.selection = req.body.question;
+  response.location = req.body.loc;
   response.time = Date(Date.now()).toString();
   response.save(err => {
     if (err) return res.json({ success: false, error: err});
