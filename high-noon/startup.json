@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "high-noon",
+      "script": "npm",
+      "args" : ["run","start-dev"]
+    }
+  ]
+}

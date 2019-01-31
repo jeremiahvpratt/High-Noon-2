@@ -16,7 +16,7 @@ class ResponsePage extends Component {
   componentDidMount() {
     this.loadResponsesFromServer();
     if( !this.pollInterval){
-      this.pollInterval = setInterval(this.loadResponsesFromServer, 2000);
+      this.pollInterval = setInterval(this.loadResponsesFromServer, 10000);
     }
   }
 
@@ -27,12 +27,13 @@ class ResponsePage extends Component {
 
   loadResponsesFromServer = () => {
 
-    fetch('http://localhost:3001/api/responses', {
+    fetch('https://sometime-soon.com:3001/api/responses', {
         method:'GET',
         mode:'cors',
         headers : {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         }
        })
       .then(data => data.json())
@@ -43,10 +44,13 @@ class ResponsePage extends Component {
   }
 
   clearResponses() {
-    fetch('http://localhost:3001/api/responses', { 
+    fetch('https://sometime-soon.com:3001/api/responses', { 
 	method: 'DELETE',
-	mode: 'cors'
-      })
+	mode: 'cors',
+        headers : {
+          'Access-Control-Allow-Origin': '*'
+        }
+})
       .then(res => res.json()).then((res) => {
         if (!res.success) this.setState({ error: res.error});
       });

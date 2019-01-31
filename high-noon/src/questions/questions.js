@@ -6,7 +6,6 @@ const QUESTIONS = [
   {_id: 5, question: 'morning'},
   {_id: 6, question: 'soon'},
   {_id: 7, question: 'before'},
-  {_id: 8, question: 'eleven'},
   {_id: 9, question: 'sometime'},
   {_id: 10, question: 'now'},
   {_id: 11, question: 'never'},

@@ -7,6 +7,9 @@ import logger from 'morgan';
 import mongoose from 'mongoose';
 import { getSecret } from './secrets';
 import Selection from './models/selection';
+import cors from 'cors';
+import https from 'https';
+import fs from 'fs';
 
 const app = express();
 const router = express.Router();
@@ -16,15 +19,25 @@ mongoose.connect(getSecret('dbUri'));
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+
+app.use(cors({
+  origin: 'https://sometime-soon.com'
+}));
+app.options('*',cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(logger('dev'));
-app.use(function(req, res, next){
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+//app.use(function(req, res, next){
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//  next();
+//});
 
 
 router.get('/responses', (req, res, next) => {
@@ -51,5 +64,13 @@ router.delete('/responses', (req, res, next) => {
 
 app.use('/api', router);
 
-app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
-
+https.createServer({
+  key: fs.readFileSync('/etc/letsencrypt/live/sometime-soon.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/sometime-soon.com/cert.pem')
+}, app)
+.listen(API_PORT, function() {
+  console.log(`Listening on port ${API_PORT}`)
+})
+//app.listen(API_PORT, function() {
+//  console.log(`Listening on port ${API_PORT}`)
+//})

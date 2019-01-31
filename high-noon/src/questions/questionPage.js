@@ -8,11 +8,12 @@ class QuestionPage extends Component {
     this.state = { data: []};
   }
   onSubmitResponse = (question) => {
-    fetch('http://localhost:3001/api/responses', {
+    fetch('https://sometime-soon.com:3001/api/responses', {
       method: 'POST',
       mode: 'cors',
       headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({question}),
     }).then(res => res.json()).then((res) => {
