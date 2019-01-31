@@ -5,11 +5,12 @@ const Question = props => (
   <div>
     <div className="linkPadding">
         <a
-          href='look'
-          onClick={() => {props.sendResponse(props.question)}}
-          className="singleQuestionContent">
-          {props.question}
-        </a>
+          href="#"
+          className="singleQuestionContent"
+          onClick={() => {props.sendResponse(props.question)}}>
+              {props.question}
+       
+       </a>
     </div>
   </div>
 );

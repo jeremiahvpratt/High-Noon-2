@@ -54,6 +54,8 @@ class QuestionPage extends Component {
     }).then(res => res.json()).then((res) => {
       if (!res.success) this.setState({ error: res.error.message || res.error});
       else this.setState({ question: ''});
+    }).then(() => {
+      window.location.href = '/look';
     });
   }
   render() {
