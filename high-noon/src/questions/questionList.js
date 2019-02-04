@@ -5,9 +5,9 @@ import shuffle from '../helperFunctions';
 
 const QuestionList = (props) => {
 
-  const shuffled = shuffle(props.data);
+  //const shuffled = shuffle(props.data);
   //const questionNodes = props.data.map(q => (
-  const questionNodes = shuffled.map(q => (
+  const questionNodes = props.data.map(q => (
     <Question
       key={q._id} id={q._id}
       question={q.question}

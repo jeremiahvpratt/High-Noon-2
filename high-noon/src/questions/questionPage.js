@@ -3,6 +3,8 @@ import QuestionList from './questionList';
 import QUESTIONS from './questions';
 import LOCATIONS from './locations';
 import {geolocated} from 'react-geolocated';
+import shuffle from '../helperFunctions';
+//import navigator from 'navigator';
 
 function radians(degrees){
   var TAU = 2 * Math.PI;
@@ -10,34 +12,46 @@ function radians(degrees){
 }
 
 class QuestionPage extends Component {
-  constructor() {
-    super();
-    this.state = { data: []};
+  
+  constructor(props) {
+    super(props);
+    this.state = { data: shuffle(QUESTIONS)};
   }
+//  componentDidMount(){
+//    this.lat = this.props.coords.latitude;
+//    this.long = this.props.coords.longitude;
+//  }
   onSubmitResponse = (question) => {
     var loc = "";
-    if(this.props.isGeolocationAvailable && this.props.isGeolocationEnabled){
-      var minDist = 999999999999999;
-      var R = 6371e3; // metres
-      var i;
-      for(i = 0; i < LOCATIONS.length; i++){
-        var φ1 = radians(this.props.coords.latitude);
-        var φ2 = radians(LOCATIONS[i].lat);
-        var Δφ = radians(LOCATIONS[i].lat-this.props.coords.latitude);
-        var Δλ = radians(LOCATIONS[i].long-this.props.coords.longitude);
+  if(this.props.isGeolocationAvailable && this.props.isGeolocationEnabled && this.props.coords){
+  //if(navigator.geolocation){
+      //var thislat;
+      //var thislong;
+      //navigator.geolocation.getCurrentPosition((crd) => {
+      //  thislat = crd.coords.latitude;
+      //  thislong = crd.coords.longitude;
+      //}).then(() => {
+        var minDist = 999999999999999;
+        var R = 6371e3; // metres
+        var i;
+        for(i = 0; i < LOCATIONS.length; i++){
+          var φ1 = radians(this.props.coords.latitude);
+          var φ2 = radians(LOCATIONS[i].lat);
+          var Δφ = radians(LOCATIONS[i].lat-this.props.coords.latitude);
+          var Δλ = radians(LOCATIONS[i].long-this.props.coords.longitude);
 
-        var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-                Math.cos(φ1) * Math.cos(φ2) *
-                Math.sin(Δλ/2) * Math.sin(Δλ/2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                  Math.cos(φ1) * Math.cos(φ2) *
+                  Math.sin(Δλ/2) * Math.sin(Δλ/2);
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-        var d = R * c;
-        if(d < minDist){
-          minDist = d;
-          loc = LOCATIONS[i].loc;
+          var d = R * c;
+          if(d < minDist){
+            minDist = d;
+            loc = LOCATIONS[i].loc;
+          }
         }
-      }
-      loc = "somewhere near " + loc;
+        loc = "somewhere near " + loc;
     } else {
       loc = "somewhere";
     }
@@ -64,7 +78,7 @@ class QuestionPage extends Component {
         <div>
           <img src={require('./let.png')} alt="" height="42" width="auto" />
           <QuestionList
-            data={QUESTIONS}
+            data={this.state.data}
             sendResponse={this.onSubmitResponse} />
         </div>
       </div>
@@ -78,3 +92,5 @@ export default geolocated({
   },
   userDecisionTimeout: 5000,
 })(QuestionPage);
+
+//export default QuestionPage;

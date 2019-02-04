@@ -25,7 +25,17 @@ p{
   color: #ff4941;
   font-size: 130%;
 }
-
+table{
+  color: #ff4941;
+  font-size: 130%;
+}
+td{
+  display: inline-block;
+  margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 a{
   color: #ff4941;
   font-size: 130%;

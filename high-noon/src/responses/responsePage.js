@@ -44,17 +44,19 @@ class ResponsePage extends Component {
   }
 
   clearResponses() {
-    fetch('https://sometime-soon.com:3001/api/responses', { 
-	method: 'DELETE',
-	mode: 'cors',
-        headers : {
-          'Access-Control-Allow-Origin': '*'
-        }
-})
-      .then(res => res.json()).then((res) => {
-        if (!res.success) this.setState({ error: res.error});
-      });
-  }
+//    fetch('https://sometime-soon.com:3001/api/responses', { 
+//	method: 'DELETE',
+//	mode: 'cors',
+//        headers : {
+//          'Access-Control-Allow-Origin': '*'
+//        }
+//})
+//     .then(res => res.json()).then((res) => {
+//        if (!res.success) this.setState({ error: res.error});
+//      });
+  clearInterval(this.pollInterval);
+  this.setState({data: null});
+}
 
   render() {
     return (
