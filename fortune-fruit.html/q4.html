@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>What fruit should you eat?</title>
+<link href="fruit/css/stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
+</head>
+	<a href="home.html">
+<h2>Pick a rock:</h2> </a>
+	
+<body onLoad="MM_preloadImages('01-Illustrations/400-sized/rock-color-sam-400.png','01-Illustrations/400-sized/rock-color-kate-400.png','01-Illustrations/400-sized/rock-color-jami-400.png')">
+	<div class="container">
+		<div class="fruit">
+			<a href="q5.html">	</a><a href="q5.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Rock 1','','01-Illustrations/400-sized/rock-color-sam-400.png',1)"><img src="01-Illustrations/400-sized/rock-sam-400.png" alt="" width="400" height="400" id="Rock 1"></a><a href="q5.html">
+<h3> Rock You Found<br>at the Park </h3>
+		</a></div>
+	<div class="fruit">
+		<a href="q5.html">		</a><a href="q5.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Hope Diamond','','01-Illustrations/400-sized/rock-color-kate-400.png',1)"><img src="01-Illustrations/400-sized/rock-kate-400.png" alt="" width="400" height="400" id="Hope Diamond"></a><a href="q5.html">
+<h3> The Hope Diamond </h3>
+	    </a></div>
+	<div class="fruit">
+		<a href="q5.html">		</a><a href="q5.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Rock 2','','01-Illustrations/400-sized/rock-color-jami-400.png',1)"><img src="01-Illustrations/400-sized/rock-jami-400.png" alt="" width="400" height="400" id="Rock 2"></a><a href="q5.html">
+<h3> The Rock You Found<br>at a Different Park </h3>
+	    </a></div>
+		
+		</div>
+	
+	</body>
+</html>
